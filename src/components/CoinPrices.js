@@ -1,23 +1,62 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper'
+import { Avatar, Typography, Box } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
 
 function CoinPrices() {
-	const [coinPrice, setCoinPrice] = useState([])
-	const [cardano, setCardano] = useState([])
+	const [coinPrices, setCoinPrices] = useState([])
+
+	const TableHeadCoin = withStyles(theme => ({
+		root: {
+			backgroundColor: '#778899'
+		}
+	}))(TableHead);
+
+	const TableHeaderCell = withStyles(theme => ({
+		root: {
+			color: 'white'
+		}
+	}))(TableCell);
 	
 	useEffect(() => {
 		axios
-			.get('https://api.coinstats.app/public/v1/coins?skip=0&limit=10')
+			.get('https://api.coinstats.app/public/v1/coins?skip=0&limit=5')
 			.then(response => {
-				setCoinPrice(response.data.coins[3].price)
-				setCardano(response.data.coins[3].name)
+				setCoinPrices(response.data.coins)
 			})
 	}, [])
 	
 	return (
 		<div>
-			<h3>Coinbases: Coin Price</h3>
-			{cardano}: ${ JSON.stringify(coinPrice) }
+			<TableContainer component={Paper}>
+				<Table>
+					<TableHeadCoin>
+						<TableRow>
+							<TableHeaderCell>Coin Name</TableHeaderCell>
+							<TableHeaderCell>Current Price</TableHeaderCell>
+						</TableRow>
+					</TableHeadCoin>
+					<TableBody>
+						{coinPrices.map((item) => (
+							<TableRow>
+								<TableCell>
+									{item.name}
+								</TableCell>
+								<TableCell>
+									${item.price.toFixed(2)}
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			</TableContainer>
 		</div>
 	)
 }

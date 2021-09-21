@@ -9,6 +9,7 @@ import theme from './theme'
 import Weather from './components/Weather'
 import DashboardNavbar from './components/DashboardNavbar'
 import CoinPrices from './components/CoinPrices'
+import NbaSchedule from './components/NbaSchedule'
 
 const App = () => {
 	return (
@@ -28,10 +29,10 @@ const App = () => {
 					<Grid item xs={6}>
 						<CoinPrices />
 					</Grid>
+					<Grid item xs={12}>
+						<NbaSchedule />
+					</Grid>
 				</Grid>
-				{/* <Container>
-						
-						</Container> */}
 			</Box>
 		</ThemeProvider>
 	)
