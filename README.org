@@ -1,0 +1,12 @@
+* Utility Dashboard
+** A fullstack site to display daily information intake
+  1. Local weather
+  2. Coin prices
+  3. Favorite sports teams schedule
+
+*NBA*
+| Team     | Opponent | Time      | Location       |
+| Celtics  | Team-X   | 7:30 EST  | TD Garden      |
+| Warriors | Team-Y   | 10:00 EST | Oracle Arena   |
+| Nets     | Team-Z   | 8:30 EST  | Barclays Arena |
+|          |          |           |                |
