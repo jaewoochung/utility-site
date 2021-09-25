@@ -27,7 +27,7 @@ function NbaSchedule() {
 	
 	useEffect(() => {
 		axios
-			.get("https://v1.basketball.api-sports.io/games?date=2021-10-05&league=12&season=2021-2022", {
+			.get("https://v1.basketball.api-sports.io/games?date=2021-10-04&league=12&season=2021-2022", {
 				"headers": {
 					"x-rapidapi-host": "v1.basketball.api-sports.io",
 					"x-rapidapi-key": "9d9a715447e2a3dbbeebac5d5297ce60"	
@@ -41,12 +41,16 @@ function NbaSchedule() {
 
 	return (
 		<div>
-			<h3>Nba Schedules</h3>
-			<TableContainer component={Paper}>
+			<Typography variant="h1" sx={{ ml:"40%" }}>
+				NBA Schedule
+			</Typography>
+			<TableContainer component={Paper} elevation={4}>
 				<Table>
 					<TableHeader>
 						<TableRow>
 							<TableHeaderCell>Away Team</TableHeaderCell>
+							<TableHeaderCell>Away Points</TableHeaderCell>
+							<TableHeaderCell>Home Points</TableHeaderCell>
 							<TableHeaderCell>Home Team</TableHeaderCell>
 							<TableHeaderCell>Time</TableHeaderCell>
 						</TableRow>
@@ -68,6 +72,12 @@ function NbaSchedule() {
 											{gameItem.teams.away.name}
 										</Typography>
 									</Box>
+								</TableCell>
+								<TableCell>
+									<Typography> {gameItem.scores.away.total}</Typography>
+								</TableCell>
+								<TableCell>
+									<Typography>{gameItem.scores.home.total}</Typography>
 								</TableCell>
 								<TableCell>
 									<Box

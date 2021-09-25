@@ -8,34 +8,39 @@ import { Avatar, Typography, Box } from '@material-ui/core'
 
 function Weather() {
 	const [weather, setWeather] = useState([])
-
+	const [condition, setCondition] = useState([])
+	
 	useEffect(() => {
 		axios
-			.get('http://api.weatherstack.com/current?access_key=b6b6db5cd4ce35f811638d14df9e5e0a&query=belmont%20ma')
+			.get('https://api.weatherapi.com/v1/current.json?key=1fb6df188b0143648c5223702212409&q=belmont ma&aqi=yes')
 			.then(response => {
 				setWeather(response.data.current)
+				setCondition(response.data.current.condition)
 			})
 	}, [])
 
 	return (
 		<div>
-			<Card>
-				<CardContent>
+			<Typography variant="h1" sx={{ ml:"35%" }} >
+				Local Weather
+			</Typography>
+			<Card elevation={3} sx={{ pl: "35%"}}>
+				<CardContent sx={{ justifyContent: "center" }}>
 					<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 						Belmont, MA
 					</Typography>
 					<Box sx={{ display: 'flex'}}>
-						<Avatar src={weather.weather_icons}></Avatar>
+						{ <Avatar src={condition.icon}></Avatar> }
 						<Typography variant="h3" component="div" sx={{ ml: 2}}>
-							{ weather.temperature }°c
+							{ weather.temp_c }°c
 						</Typography>
 					</Box>
 					<Typography variant="body2" color="text.secondary">
-						{ weather.weather_descriptions }
+						 { condition.text }
 					</Typography>
 					<Box sx={{ display: 'flex', mt: 1}}>
 						<Typography variant="body2" component="div">
-							UV Index: { weather.uv_index }
+							Wind MPH: { weather.wind_mph }
 						</Typography>
 						<Typography variant="body2" component="div" sx={{ ml: 2}}>
 							Humidty: { weather.humidity }%
@@ -48,3 +53,7 @@ function Weather() {
 }
 
 export default Weather
+
+/* 
+
+ */

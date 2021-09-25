@@ -8,7 +8,7 @@ const DashboardNavbar = () => {
 	return (
 		<AppBar elevation={0}>
 			<Toolbar sx={{ bgcolor: '#5664d2' }}>
-				<strong>Utility Dashboard</strong>
+				<strong>Jaewoo's Utility Dashboard</strong>
 				<Box sx={{ flexGrow: 1 }} />
 			</Toolbar>
 		</AppBar>

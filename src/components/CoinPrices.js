@@ -30,17 +30,29 @@ function CoinPrices() {
 			.get('https://api.coinstats.app/public/v1/coins?skip=0&limit=5')
 			.then(response => {
 				setCoinPrices(response.data.coins)
+				console.log(response.data.coins)
 			})
 	}, [])
 	
 	return (
 		<div>
-			<TableContainer component={Paper}>
+			<Typography variant="h1">
+				Top 5 Cryptocurrencies in the world
+			</Typography>
+			<TableContainer component={Paper} elevation={3}>
 				<Table>
 					<TableHeadCoin>
 						<TableRow>
-							<TableHeaderCell>Coin Name</TableHeaderCell>
-							<TableHeaderCell>Current Price</TableHeaderCell>
+							<TableHeaderCell>
+								<Typography>
+									Coin Name
+								</Typography>
+							</TableHeaderCell>
+							<TableHeaderCell>
+								<Typography>
+									Coin Prices
+								</Typography>
+							</TableHeaderCell>
 						</TableRow>
 					</TableHeadCoin>
 					<TableBody>
