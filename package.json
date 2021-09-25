@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.4",
     "coinbase": "^2.0.8",
+    "millify": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",

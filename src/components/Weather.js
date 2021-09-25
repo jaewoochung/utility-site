@@ -30,7 +30,7 @@ function Weather() {
 						Belmont, MA
 					</Typography>
 					<Box sx={{ display: 'flex'}}>
-						{ <Avatar src={condition.icon}></Avatar> }
+						<Avatar src={condition.icon}></Avatar>
 						<Typography variant="h3" component="div" sx={{ ml: 2}}>
 							{ weather.temp_c }°c
 						</Typography>

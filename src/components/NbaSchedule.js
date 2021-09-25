@@ -98,7 +98,7 @@ function NbaSchedule() {
 							</TableRow>
 						))}
 					</TableBody>
-			</Table>
+				</Table>
 			</TableContainer>
 		</div>	
 	)

@@ -7,8 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
-import { Avatar, Typography, Box } from '@material-ui/core'
+import { Avatar, Grid, Card, CardHeader, CardContent, Typography, Box } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
+import millify from "millify"
 
 function CoinPrices() {
 	const [coinPrices, setCoinPrices] = useState([])
@@ -27,7 +28,7 @@ function CoinPrices() {
 	
 	useEffect(() => {
 		axios
-			.get('https://api.coinstats.app/public/v1/coins?skip=0&limit=5')
+			.get('https://api.coinstats.app/public/v1/coins?skip=0&limit=10')
 			.then(response => {
 				setCoinPrices(response.data.coins)
 				console.log(response.data.coins)
@@ -36,39 +37,30 @@ function CoinPrices() {
 	
 	return (
 		<div>
-			<Typography variant="h1">
-				Top 5 Cryptocurrencies in the world
+			<Typography variant="h1" sx={{ ml:"35%", my: 2 }} >
+				Top 10 Cryptocurrencies
 			</Typography>
-			<TableContainer component={Paper} elevation={3}>
-				<Table>
-					<TableHeadCoin>
-						<TableRow>
-							<TableHeaderCell>
-								<Typography>
-									Coin Name
-								</Typography>
-							</TableHeaderCell>
-							<TableHeaderCell>
-								<Typography>
-									Coin Prices
-								</Typography>
-							</TableHeaderCell>
-						</TableRow>
-					</TableHeadCoin>
-					<TableBody>
-						{coinPrices.map((item) => (
-							<TableRow>
-								<TableCell>
-									{item.name}
-								</TableCell>
-								<TableCell>
-									${item.price.toFixed(2)}
-								</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
+			<Grid container spacing={2}>
+				{coinPrices.map((item) => (
+					<Card elevation={3} xs={4} sx={{ m:1.5 }}>
+						<Box sx={{ display: 'flex', m:1.25 }}>
+							<Avatar src={item.icon}></Avatar>
+							<Typography variant="h4">{item.name}</Typography>	
+						</Box>
+						<Box sx={{ display: 'block'}}>
+							<CardContent>
+								<Typography variant="p">Price: {millify(item.price)}</Typography>	
+							</CardContent>
+							<CardContent>
+								<Typography variant="p">Market Cap: {millify(item.marketCap)}</Typography>	
+							</CardContent>
+							<CardContent>
+								<Typography variant="p">Daily Change: {millify(item.priceChange1d)}%</Typography>		
+							</CardContent>
+						</Box>
+					</Card>
+				))}
+			</Grid>
 		</div>
 	)
 }

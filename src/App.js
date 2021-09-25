@@ -22,11 +22,11 @@ const App = () => {
 					py: 12,
 				}}
 			>
-				<Grid container spacing={1}>
+				<Grid container spacing={3}>
 					<Grid item xs={12} sx={{ ml:"25%", mr:"25%" }}>
 						<Weather />	
 					</Grid>
-					<Grid item xs={12} sx={{ ml:"15%", mr:"15%" }}>
+					<Grid item xs={8} sx={{ ml:"20%", mr:"5%" }}>
 						<CoinPrices />
 					</Grid>
 					<Grid item xs={12} sx={{ ml:"15%", mr:"15%" }} >
