@@ -29,7 +29,7 @@ function NbaSchedule() {
 	
 	useEffect(() => {
 		axios
-			.get("https://v1.basketball.api-sports.io/games?date=2021-10-04&league=12&season=2021-2022", {
+			.get("https://v1.basketball.api-sports.io/games?date=2021-10-03&league=12&season=2021-2022", {
 				"headers": {
 					"x-rapidapi-host": "v1.basketball.api-sports.io",
 					"x-rapidapi-key": "9d9a715447e2a3dbbeebac5d5297ce60"	
