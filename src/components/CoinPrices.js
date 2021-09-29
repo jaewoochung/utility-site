@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import { Avatar, Grid, Card, CardHeader, CardContent, Typography, Box } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
@@ -13,18 +7,6 @@ import millify from "millify"
 
 function CoinPrices() {
 	const [coinPrices, setCoinPrices] = useState([])
-
-	const TableHeadCoin = withStyles(theme => ({
-		root: {
-			backgroundColor: '#778899'
-		}
-	}))(TableHead);
-
-	const TableHeaderCell = withStyles(theme => ({
-		root: {
-			color: 'white'
-		}
-	}))(TableCell);
 	
 	useEffect(() => {
 		axios

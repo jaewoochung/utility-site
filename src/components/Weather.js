@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { Avatar, Typography, Box } from '@material-ui/core'
 
 function Weather() {

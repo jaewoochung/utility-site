@@ -9,10 +9,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import { Avatar, Typography, Box } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
+/* import unix-timestamp-converter from "unix-timestamp-converter" */
 
 function NbaSchedule() {
 	const [nbaGames, setGames] = useState([])
-
+	const time = require('unix-timestamp-converter')
+	
 	const TableHeader = withStyles(theme => ({
 		root: {
 			backgroundColor: '#778899'
@@ -48,6 +50,7 @@ function NbaSchedule() {
 				<Table>
 					<TableHeader>
 						<TableRow>
+							<TableHeaderCell>Date</TableHeaderCell>
 							<TableHeaderCell>Away Team</TableHeaderCell>
 							<TableHeaderCell>Away Points</TableHeaderCell>
 							<TableHeaderCell>Home Points</TableHeaderCell>
@@ -58,6 +61,9 @@ function NbaSchedule() {
 					<TableBody>
 						{nbaGames.map((gameItem) => (
 							<TableRow key={gameItem.id}>
+								<TableCell>
+									<Typography>{time.UNIX_CODE(gameItem.timestamp)}</Typography>
+								</TableCell>
 								<TableCell>
 									<Box
 										sx={{
@@ -74,10 +80,12 @@ function NbaSchedule() {
 									</Box>
 								</TableCell>
 								<TableCell>
-									<Typography> {gameItem.scores.away.total}</Typography>
+									<Typography> {(gameItem.scores.away.total === null) ? 0 : gameItem.scores.away.total }</Typography>
 								</TableCell>
 								<TableCell>
-									<Typography>{gameItem.scores.home.total}</Typography>
+									<Typography>
+										{(gameItem.scores.home.total === null) ? 0 : gameItem.scores.home.total }
+									</Typography>
 								</TableCell>
 								<TableCell>
 									<Box
