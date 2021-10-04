@@ -1,0 +1,50 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Paper from '@mui/material/Paper';
+import { Avatar, Grid, Card, CardHeader, CardContent, Typography, Box } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
+import millify from "millify";
+
+function CryptoNews() {
+	const [news, setNews] = useState([]);
+
+	useEffect(() => {
+		axios
+		/* 			.get('https://bing-news-search1.p.rapidapi.com/news', { */
+			.get('https://bing-news-search1.p.rapidapi.com/news/search?q="cardano"&textFormat=Raw&safeSearch=Off', {
+					headers: {
+						'x-bingapis-sdk': 'true',
+						'x-rapidapi-host': 'bing-news-search1.p.rapidapi.com',
+						'x-rapidapi-key': 'dc6d25fefdmshff9ae0aa1052398p1dc5a4jsnbfce12e32326'
+					}
+			})
+			.then(response => {
+				setNews(response.data.value);
+				console.log(response.data.value);
+			});
+	}, []);
+	
+	return (
+		<div>
+			<Typography variant="h1" sx={{ ml:"35%", my: 2 }} >
+				Top 10 Cryptocurrencies
+			</Typography>
+			<Grid container spacing={2}>
+				{news.map((item) => (
+					<Card elevation={3} xs={4} sx={{ m:1.5 }}>
+						<Box sx={{ display: 'flex', m:1.25 }}>
+							<Typography variant="h3">{item.name}</Typography>	
+						</Box>
+						<Box sx={{ display: 'block'}}>
+							<CardContent>
+								<Typography variant="h4">{item.description}</Typography>	
+							</CardContent>
+						</Box>
+					</Card>
+				))}
+		  </Grid>
+		</div>
+	)
+}
+
+export default CryptoNews
