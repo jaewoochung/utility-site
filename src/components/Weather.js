@@ -37,7 +37,7 @@ function Weather() {
 								</Box>
 							</Box>
 							<Typography variant="h3" component="div" sx={{ mt: 2}}>
-								Temperature: { weather.temp_f }°c
+								Temperature: { weather.temp_f }°f
 							</Typography>
 							<Box>
 								<Typography variant="h3" component="div" sx={{ mt: 2}}>

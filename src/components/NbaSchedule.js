@@ -10,6 +10,39 @@ import Paper from '@mui/material/Paper';
 import { Avatar, Typography, Box } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
+const getDate1 = () => {
+	// calculate date
+	var utcTime = new Date();
+		var today = utcTime.toLocaleString('en-US', { timeZone: 'US/Eastern' }).split(',');
+		today = today[0].split('/');
+
+		var dayOfMonth = today[1]
+		if (dayOfMonth < 10) {
+			dayOfMonth = "0" + dayOfMonth;
+		}
+		var month = today[0];
+		var year = today[2];
+		const date = year + "-" + month + "-" + dayOfMonth;
+		
+		return date
+}
+
+const getDate2 = () => {
+	var utcTime = new Date();
+	var today = utcTime.toLocaleString('en-US', { timeZone: 'US/Eastern' }).split(',');
+	today = today[0].split('/');
+
+	var dayOfMonth = today[1]
+	if (dayOfMonth < 10) {
+		dayOfMonth = "0" + dayOfMonth;
+	}
+	var month = today[0];
+	var year = today[2];
+	const date = year + "-" + month + "-" + dayOfMonth;
+	
+	return date
+}
+
 function NbaSchedule() {
 	const [nbaGames, setGames] = useState([]);
 	const time = require('unix-timestamp-converter');
@@ -27,23 +60,15 @@ function NbaSchedule() {
 	}))(TableCell);
 	
 	useEffect(() => {
-		var utcTime = new Date();
-		var today = utcTime.toLocaleString('en-US', { timeZone: 'US/Eastern' }).split(',');
-		today = today[0].split('/');
-
-		var dayOfMonth = today[1]
-		if (dayOfMonth < 10) {
-			dayOfMonth = "0" + dayOfMonth;
-		}
-		var month = today[0];
-		var year = today[2];
-		const date = year + "-" + month + "-" + dayOfMonth;
+		const date1 = getDate1();
+		const date2 = getDate2();
+		
 		axios
-			.get("https://v1.basketball.api-sports.io/games?date="+date+"&league=12&season=2021-2022", {
+			.get("https://v1.basketball.api-sports.io/games?date="+date1+"&league=12&season=2021-2022", {
 				"headers": {
 					"x-rapidapi-host": "v1.basketball.api-sports.io",
 					"x-rapidapi-key": "9d9a715447e2a3dbbeebac5d5297ce60"	
-				}			
+				}
 			})
 			.then(response => {
 				console.log(response.data.response);

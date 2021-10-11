@@ -11,7 +11,6 @@ function CryptoNews() {
 
 	useEffect(() => {
 		axios
-		/* 			.get('https://bing-news-search1.p.rapidapi.com/news', { */
 			.get('https://bing-news-search1.p.rapidapi.com/news/search?q="nba"&textFormat=Raw&safeSearch=Off', {
 					headers: {
 						'x-bingapis-sdk': 'true',
